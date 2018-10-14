@@ -1,9 +1,15 @@
 .DS_Store
+
 .dart_tool/
 
+
 .packages
-.pub/
+
+.pub
+/
 
 build/
 
+
 .flutter-plugins
+.idea/
