@@ -27,17 +27,21 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: new BottomNavigationBar(
           items: [
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              title: new Text("Home"),
+              icon: new Icon(Icons.desktop_mac),
+              title: new Text("Industrial"),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.notifications),
-              title: new Text("Notifications"),
+              icon: new Icon(Icons.account_balance),
+              title: new Text("University"),
             ),
             new BottomNavigationBarItem(
+              icon: new Icon(Icons.check),
+              title: new Text("Practice"),
+            ), new BottomNavigationBarItem(
               icon: new Icon(Icons.person),
               title: new Text("Profile"),
             ),
+
           ],
           onTap: navTapped,
           currentIndex: page,
