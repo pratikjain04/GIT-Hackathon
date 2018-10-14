@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(title: new Text("MedRooms"), centerTitle: true,),
+      appBar: new AppBar(title: new Text('Title'), centerTitle: true,),
         body: new PageView(children: [
           new Page0(),
           new Page1(),
