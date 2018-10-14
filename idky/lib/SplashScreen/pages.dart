@@ -134,7 +134,7 @@ class Page extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pushNamed(
-                                      '/SignIn');
+                                      '/HomePage');
                                 }),
                           )
                         : Container(),
