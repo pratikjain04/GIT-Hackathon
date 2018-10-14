@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Page0.dart';
 import 'Page1.dart';
 import 'Page2.dart';
+import 'Profile.dart';
 
 PageController pageControl;
 
@@ -23,24 +24,30 @@ class _HomePageState extends State<HomePage> {
           new Page0(),
           new Page1(),
           new Page2(),
+          Profile()
         ], controller: pageControl, onPageChanged: onPageChange),
         bottomNavigationBar: new BottomNavigationBar(
           items: [
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.home),
-              title: new Text("Home"),
+              icon: new Icon(Icons.desktop_mac),
+              title: new Text('Company\nProjects'),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.notifications),
-              title: new Text("Notifications"),
+              icon: new Icon(Icons.account_balance),
+              title: new Text('University\nProjects'),
             ),
             new BottomNavigationBarItem(
-              icon: new Icon(Icons.person),
-              title: new Text("Profile"),
+              icon: new Icon(Icons.check),
+              title: new Text('Practice Zone'),
             ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              title: Text('Profile')
+            )
           ],
           onTap: navTapped,
           currentIndex: page,
+          type: BottomNavigationBarType.fixed,
         ));
   }
 
