@@ -28,9 +28,9 @@ class _HomePageState extends State<HomePage> {
         ], controller: pageControl, onPageChanged: onPageChange),
         bottomNavigationBar: new BottomNavigationBar(
           items: [
-            new BottomNavigationBarItem(
+             new BottomNavigationBarItem(
               icon: new Icon(Icons.desktop_mac),
-              title: new Text('Company\nProjects'),
+               title: new Text('Company\nProjects'),
             ),
             new BottomNavigationBarItem(
               icon: new Icon(Icons.account_balance),

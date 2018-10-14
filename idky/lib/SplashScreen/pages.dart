@@ -4,30 +4,26 @@ final pages = [
   new PageViewModel(
       const Color(0xFFF44336),
       'assets/patient.png',
-      'Patient?',
-      'Tap on the "Emergency Book" button to book\n a MedRoom, if its urgent and we will take care!',
+      'Internships?',
+      'Add your skills in Profile Page, \nand Select the domain of Internship\n and get industrial exposure',
       'assets/person.png',
-      'Emergency Book', (BuildContext context) {
-    Navigator.of(context).pushNamed('/SignInEmergency');
-  }, false),
+      false
+    ),
   new PageViewModel(
       const Color(0xFF03A9F4),
       'assets/home.png',
-      'Rooms',
-      'All rooms are sorted by hospitality \nrating',
+      'In-University Projects',
+      'Find all the ongoing projects in the \nUniversity. One Click and be a part of the \nproject you are interested in.',
       'assets/key.png',
-      'Register Rooms', (BuildContext context) {
-    Navigator.of(context).pushNamed('/RegRoom');
-  }, false),
+      false
+      ),
   new PageViewModel(
       const Color(0xFF8BC34A),
       'assets/hospital.png',
-      'Hospitals',
-      'We carefully verify all hospitals before \nadding them into the app',
+      'Prepare?',
+      'Prepare for interviews and placement\n rounds with our well \nsorted prepration model.',
       'assets/wallet.png',
-      'Register Hospital', (BuildContext context) {
-    Navigator.of(context).pushNamed('/RegHospital');
-  }, true),
+      true),
 ];
 
 class Page extends StatelessWidget {
@@ -96,23 +92,6 @@ class Page extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     new Padding(padding: EdgeInsets.only(left: uni_width / 25)),
-                    Container(
-                      height: 40.0,
-                      width: 150.0,
-                      child: new RaisedButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        color: Colors.white,
-                        child: Text(
-                          viewModel.buttonText,
-                          style: TextStyle(
-                            fontFamily: 'FlamanteRoma',
-                            color: viewModel.color,
-                          ),
-                        ),
-                        onPressed: () => viewModel.action(context),
-                      ),
-                    ),
                     viewModel.isNextNeeded
                         ? Padding(
                             padding: EdgeInsets.only(left: uni_width / 15))
@@ -151,10 +130,8 @@ class PageViewModel {
   final String title;
   final String body;
   final String iconAssetPath;
-  final String buttonText;
-  final Function action;
   final bool isNextNeeded;
 
   PageViewModel(this.color, this.heroAssetPath, this.title, this.body,
-      this.iconAssetPath, this.buttonText, this.action, this.isNextNeeded);
+      this.iconAssetPath, this.isNextNeeded);
 }
