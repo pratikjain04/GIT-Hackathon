@@ -9,9 +9,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
-  bool _onClick = false;
   String _text = 'FIRST/LAST NAME';
-  List<String> list = ['Your Skills', 'Current Semester', 'Projects applied for'];
 
 
   @override
