@@ -13,6 +13,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
+    double uni_height = MediaQuery.of(context).size.height;
+    double uni_width = MediaQuery.of(context).size.width;
     return ListView(
         children: <Widget>[
           Stack(
@@ -26,8 +28,8 @@ class _ProfileState extends State<Profile> {
                     ]
                 ),
                 Positioned(
-                  right: 10.0,
-                  top: 10.0,
+                  right: uni_width / 41.1,
+                  top: uni_height / 73.1,
                   child: IconButton(
                     icon: Icon(Icons.edit),
                     onPressed: (){
@@ -43,8 +45,8 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 Positioned(
-                  left: 40.0,
-                  top: 140.0,
+                  left: uni_width / 10.27,
+                  top: uni_height / 5.22,
                   child: Row(
                     children: <Widget>[
                       Container(
@@ -53,16 +55,16 @@ class _ProfileState extends State<Profile> {
                             border: Border.all(color: Colors.white),
                           color: Colors.blue
                         ),
-                        height: 60.0,
-                        width: 60.0,
+                        height: uni_height / 12.18,
+                        width: uni_width / 6.85,
                         child: Center(
                           child: Container(
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(color: Colors.white, width: 3.0),
                             ),
-                            height: 50.0,
-                            width: 50.0,
+                            height: uni_height / 14.62,
+                            width: uni_width / 8.22,
                             child: Center(
                                 child: Icon(Icons.account_circle, color: Colors.white)
                             ),
@@ -79,7 +81,7 @@ class _ProfileState extends State<Profile> {
                               fontWeight: FontWeight.bold
                           ),
                         ) : Container(
-                          width: 200.0,
+                          width: uni_width / 2.055,
                           child: TextField(
                             autofocus: true,
                             decoration: InputDecoration(
