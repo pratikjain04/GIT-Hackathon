@@ -113,7 +113,7 @@ class Page extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pushNamedAndRemoveUntil(
-                                      '/HomePage', (Route<dynamic> route) => false);
+                                      '/SignIn', (Route<dynamic> route) => false);
                                 }),
                           )
                         : Container(),

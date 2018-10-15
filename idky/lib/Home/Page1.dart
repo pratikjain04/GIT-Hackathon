@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'UniversityProjectModel.dart';
 
 class Page1 extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class Page1 extends StatefulWidget {
 class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: UniversityProjectModel(),
+    );
   }
 }
