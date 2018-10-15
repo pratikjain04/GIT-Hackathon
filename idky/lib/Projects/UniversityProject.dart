@@ -8,8 +8,6 @@ class UniversityProject{
 
   UniversityProject(this.projectName, this.mentorName, this.domainName, this.description);
 
-
-
 }
 
 
@@ -33,7 +31,7 @@ List<UniversityProject> universityProjects = [
       'Marksheet Scanner',
       'Ankit Sharma',
       'Machine Learning',
-      'Uploads the marks of exams directly in one image'
+      'Uploads the marks of exams \ndirectly in one image'
   ),
 
   UniversityProject(
@@ -49,5 +47,7 @@ List<UniversityProject> universityProjects = [
       'Internet of Things',
       'Research Project for Disaster Management'
   ),
+
+
 
 ];
