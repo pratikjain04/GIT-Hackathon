@@ -6,8 +6,6 @@ class CompanyProject{
   String description;
 
   CompanyProject(this.projectName, this.companyName, this.domainName, this.description);
-
-
 }
 
 

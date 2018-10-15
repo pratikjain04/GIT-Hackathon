@@ -51,7 +51,7 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
                     child: Image(image: AssetImage('assets/logo.png'), fit: BoxFit.cover,)),
                 Padding(padding: EdgeInsets.only(top: uni_height / 16)),
                 Text(
-                  "App Name",
+                  'GetPlaced',
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Nexa',
