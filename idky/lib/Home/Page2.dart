@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'PracticeZoneModel.dart';
+
+
 
 class Page2 extends StatefulWidget {
   @override
@@ -8,6 +11,8 @@ class Page2 extends StatefulWidget {
 class _Page2State extends State<Page2> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: PracticeZoneModel(),
+    );
   }
 }
