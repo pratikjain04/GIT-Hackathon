@@ -1,6 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import '../Projects/CompanyProject.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CompanyProjectModel extends StatefulWidget {
   @override
@@ -9,15 +11,49 @@ class CompanyProjectModel extends StatefulWidget {
 
 class _CompanyProjectModelState extends State<CompanyProjectModel> {
 
+  List<CompanyProject> filteredCompanyProjectList = List();
+  DocumentReference documentReference;
+
+  Future<DocumentSnapshot> _getProjectList() async {
+    documentReference = Firestore.instance.document('user/skills');
+    DocumentSnapshot snapshot = await documentReference.get();
+    return snapshot;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getProjectList().then((docsnapshot){
+      docsnapshot.data['domains'].forEach((domain){
+        companyProjects.forEach((project){
+          if(domain == project.domainName)
+            setState(() {
+              filteredCompanyProjectList.add(project);
+            });
+        });
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
+    return (filteredCompanyProjectList.isNotEmpty) ? Scrollbar(
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: companyProjects.length,
+        itemCount: filteredCompanyProjectList.length,
         itemBuilder: (BuildContext context, int index) {
-          return ProjectCardWidget(companyProject: companyProjects[index],);
+          return ProjectCardWidget(companyProject: filteredCompanyProjectList[index]);
         },
+      ),
+    ) : Padding(
+      padding: EdgeInsets.only(top: 10.0),
+      child: Center(
+        child: Text(
+          'No Projects matcing your skillset / Skills not updated',
+          style: TextStyle(
+            fontWeight: FontWeight.w400
+          ),
+        ),
       ),
     );
   }
@@ -25,8 +61,7 @@ class _CompanyProjectModelState extends State<CompanyProjectModel> {
 
 class ProjectCardWidget extends StatelessWidget {
 
-  CompanyProject companyProject;
-
+  final CompanyProject companyProject;
 
   ProjectCardWidget({
     Key key, this.companyProject

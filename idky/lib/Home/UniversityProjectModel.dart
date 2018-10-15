@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Projects/UniversityProject.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class UniversityProjectModel extends StatefulWidget {
@@ -8,6 +9,12 @@ class UniversityProjectModel extends StatefulWidget {
 }
 
 class _UniversityProjectModelState extends State<UniversityProjectModel> {
+  DocumentReference documentReference;
+
+  void _addOngoingProject(Map<String, dynamic> data) async {
+    documentReference = Firestore.instance.document('${data['name']}');
+    await documentReference.setData(data);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +32,7 @@ class _UniversityProjectModelState extends State<UniversityProjectModel> {
 
 class ProjectCardWidget extends StatelessWidget {
 
-  UniversityProject universityProject;
-
+  final UniversityProject universityProject;
 
   ProjectCardWidget({
     Key key, this.universityProject

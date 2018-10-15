@@ -7,9 +7,6 @@ class UniversityProject{
   String description;
 
   UniversityProject(this.projectName, this.mentorName, this.domainName, this.description);
-
-
-
 }
 
 
