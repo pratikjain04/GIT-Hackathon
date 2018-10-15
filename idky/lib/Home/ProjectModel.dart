@@ -10,6 +10,7 @@ class _ProjectModelState extends State<ProjectModel> {
   Widget build(BuildContext context) {
     return Scrollbar(
       child: ListView.builder(
+
         itemCount: 10,
         itemBuilder: (BuildContext context, int index) {
           return Padding(
