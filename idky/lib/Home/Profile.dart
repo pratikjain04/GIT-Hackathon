@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'ProfileModel.dart';
+
 
 class Profile extends StatefulWidget {
   @override
@@ -11,10 +13,12 @@ class _ProfileState extends State<Profile> {
   String _text = 'FIRST/LAST NAME';
   List<String> list = ['Your Skills', 'Current Semester', 'Projects applied for'];
 
+
   @override
   Widget build(BuildContext context) {
     double uni_height = MediaQuery.of(context).size.height;
     double uni_width = MediaQuery.of(context).size.width;
+
     return ListView(
         children: <Widget>[
           Stack(
@@ -126,11 +130,11 @@ class _ProfileState extends State<Profile> {
                     return ListTile(
                       trailing: Icon(Icons.arrow_forward),
                       title: Text(
-                        list[index],
+                        profile[index].title,
                         style: TextStyle(
                         ),
                       ),
-                      onTap: (){},
+                      onTap: profile[index].action(context),
                     );
                   }
               )
