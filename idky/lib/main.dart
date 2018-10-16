@@ -12,7 +12,6 @@ void main() => runApp(MaterialApp(
       '/SignIn': (BuildContext context) => new SignIn(),
       '/Skills': (BuildContext context) => new Skills(),
       '/CollegeSelection': (BuildContext context) => new CollegeSelection()
-
     },
 ));
 
