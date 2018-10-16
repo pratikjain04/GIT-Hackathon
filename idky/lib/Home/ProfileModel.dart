@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ProfileModel {
   String title;
   Function action;
+
   ProfileModel(this.title, this.action);
 }
 

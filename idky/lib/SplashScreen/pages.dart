@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 final pages = [
   new PageViewModel(
       const Color(0xFFF44336),
-      'assets/patient.png',
-      'Internships?',
+      'assets/internship.png',
+      'Internships',
       'Add your skills in Profile Page, \nand Select the domain of Internship\n and get industrial exposure',
-      'assets/person.png',
+      'assets/wallet.png',
       false
     ),
   new PageViewModel(
       const Color(0xFF03A9F4),
-      'assets/home.png',
+      'assets/projects.png',
       'In-University Projects',
       'Find all the ongoing projects in the \nUniversity. One Click and be a part of the \nproject you are interested in.',
       'assets/key.png',
@@ -19,10 +19,10 @@ final pages = [
       ),
   new PageViewModel(
       const Color(0xFF8BC34A),
-      'assets/hospital.png',
-      'Prepare?',
+      'assets/prepare.png',
+      'Prepare',
       'Prepare for interviews and placement\n rounds with our well \nsorted prepration model.',
-      'assets/wallet.png',
+      'assets/person.png',
       true),
 ];
 
@@ -53,7 +53,10 @@ class Page extends StatelessWidget {
                       0.0, 50.0 * (1.0 - percentVisible), 0.0),
                   child: new Padding(
                     padding: new EdgeInsets.only(bottom: 25.0),
-                    child: new ImageIcon(new AssetImage(viewModel.heroAssetPath), size: 175.0, color: Colors.white),
+                    child: Container(
+                        height: 175.0,
+                        width: 175.0,
+                        child: new Image(image: new AssetImage(viewModel.heroAssetPath))),
                     //child: new Image.asset(viewModel.heroAssetPath,
                     //    width: 200.0, height: 200.0),
                   ),
@@ -113,7 +116,7 @@ class Page extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pushNamedAndRemoveUntil(
-                                      '/CollegeSelection', (Route<dynamic> route) => false);
+                                      '/SignIn', (Route<dynamic> route) => false);
                                 }),
                           )
                         : Container(),
