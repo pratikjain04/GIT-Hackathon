@@ -71,6 +71,12 @@ class ProjectCardWidget extends StatefulWidget {
 
 class _ProjectCardWidgetState extends State<ProjectCardWidget> {
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  DocumentReference documentReference;
+
+  void _addOngoingProject(Map<String, String> data) async {
+    documentReference = Firestore.instance.document('projects/${data['projectName']}');
+    await documentReference.setData(data);
+  }
 
   void _showModalSheet() {
     showModalBottomSheet(
@@ -101,7 +107,16 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                             elevation: 5.0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0)),
-                            onPressed: () {},
+                            onPressed: () {
+                              Map<String, String> data = <String, String>{
+                                "projectName" : widget.companyProject.projectName,
+                                "companyName" : widget.companyProject.companyName,
+                                "domainName" : widget.companyProject.domainName,
+                                "description" : widget.companyProject.description,
+                                "longDesc" : widget.companyProject.longDesc
+                              };
+                              _addOngoingProject(data);
+                            },
                             child: Text('Apply'),
                           )
                         ],
