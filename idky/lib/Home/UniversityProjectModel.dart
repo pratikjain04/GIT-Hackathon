@@ -92,7 +92,6 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
         });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
