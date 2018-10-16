@@ -10,7 +10,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
 
   String _text = 'FIRST/LAST NAME';
-
+  bool _onClick = false;
 
   @override
   Widget build(BuildContext context) {
