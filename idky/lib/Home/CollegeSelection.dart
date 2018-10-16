@@ -92,7 +92,7 @@ class _CollegeSelectionState extends State<CollegeSelection> {
                 elevation: 7.0,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                 onPressed: (){
-                  Navigator.of(context).pushNamedAndRemoveUntil('/HomePage', (Route<dynamic> route) => false);
+                 // Navigator.of(context).pushNamedAndRemoveUntil('/HomePage', (Route<dynamic> route) => false);
                 },
                 color: Colors.blue,
                 child: Text(
