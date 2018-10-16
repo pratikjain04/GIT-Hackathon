@@ -55,5 +55,4 @@ List<UniversityProject> universityProjects = [
   ),
 
 
-
 ];
