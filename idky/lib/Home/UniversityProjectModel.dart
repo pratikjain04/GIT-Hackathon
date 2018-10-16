@@ -88,7 +88,6 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                               };
                               _addOngoingProject(data);
                             },
-
                             child: Text('Join Project', style: TextStyle(color: Colors.white)),
                           )
                         ],
