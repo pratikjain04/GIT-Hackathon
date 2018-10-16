@@ -61,19 +61,22 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                           ),
                           Text(
                             widget.universityProject.projectName,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
                           ),
                           Padding(padding: EdgeInsets.only(top: 25.0)),
                           Text(widget.universityProject.longdesc,),
                           Padding(padding: EdgeInsets.only(top: 25.0)),
                           RaisedButton(
+                            color: Colors.blue,
+                            splashColor: Colors.lightBlueAccent,
                             elevation: 5.0,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0)),
                             onPressed: () {
                               //todo: ATEEK
                             },
-                            child: Text('Join Project'),
+
+                            child: Text('Join Project', style: TextStyle(color: Colors.white)),
                           )
                         ],
                       ),

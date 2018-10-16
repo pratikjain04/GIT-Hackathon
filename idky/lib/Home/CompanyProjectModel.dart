@@ -98,7 +98,7 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                           ),
                           Text(
                             widget.companyProject.projectName,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.0),
                           ),
                           Padding(padding: EdgeInsets.only(top: 25.0)),
                           Text(widget.companyProject.longDesc,),
@@ -117,7 +117,9 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                               };
                               _addOngoingProject(data);
                             },
-                            child: Text('Apply'),
+                            color: Colors.blue,
+                            splashColor: Colors.lightBlueAccent,
+                            child: Text('Apply', style: TextStyle(color: Colors.white),),
                           )
                         ],
                       ),
