@@ -6,7 +6,7 @@ final pages = [
       'assets/internship.png',
       'Internships',
       'Add your skills in Profile Page, \nand Select the domain of Internship\n and get industrial exposure',
-      'assets/person.png',
+      'assets/wallet.png',
       false
     ),
   new PageViewModel(
@@ -22,7 +22,7 @@ final pages = [
       'assets/prepare.png',
       'Prepare',
       'Prepare for interviews and placement\n rounds with our well \nsorted prepration model.',
-      'assets/wallet.png',
+      'assets/person.png',
       true),
 ];
 
@@ -116,7 +116,7 @@ class Page extends StatelessWidget {
                                 ),
                                 onPressed: () {
                                   Navigator.of(context).pushNamedAndRemoveUntil(
-                                      '/CollegeSelection', (Route<dynamic> route) => false);
+                                      '/SignIn', (Route<dynamic> route) => false);
                                 }),
                           )
                         : Container(),

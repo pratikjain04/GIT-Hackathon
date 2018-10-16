@@ -71,7 +71,7 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
                         borderRadius: BorderRadius.circular(20.0)),
                     elevation: 30.0,
                     onPressed: () {
-                      Navigator.of(context).pushNamedAndRemoveUntil('/HomePage', (Route<dynamic> route)=>false);
+                      Navigator.of(context).pushNamedAndRemoveUntil('/CollegeSelection', (Route<dynamic> route)=>false);
                         },
                     color: Color(0xFFFF000F),
                     child: Row(

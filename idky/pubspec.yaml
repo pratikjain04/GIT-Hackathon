@@ -46,6 +46,10 @@ flutter:
   - assets/projects.png
   - assets/prepare.png
   - assets/internship.png
+  - assets/person.png
+  - assets/logo.png
+  - assets/key.png
+  - assets/wallet.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
