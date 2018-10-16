@@ -42,62 +42,85 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
   DocumentReference documentReference;
 
+  final GlobalKey<ScaffoldState> _scaffoldstate = new GlobalKey<ScaffoldState>();
+
   void _addOngoingProject(Map<String, String> data) async {
     documentReference = Firestore.instance.document('projects/${data['projectName']}');
     await documentReference.setData(data);
+  }
+
+
+  void _showSnackBar(String value) {
+    if (value.isEmpty)
+      return;
+    _scaffoldstate.currentState.showSnackBar(
+        new SnackBar(
+          content: Row(
+            children: <Widget>[
+              new Text(value, style: TextStyle(color: Colors.white),),
+              Padding(padding: EdgeInsets.only(left: 100.0),),
+              Icon(Icons.check, color: Colors.white,)
+            ],
+          ),
+          backgroundColor: Colors.green,)
+    );
   }
 
   void _showModalSheet() {
     showModalBottomSheet(
         context: context,
         builder: (builder) {
-          return Column(
-            children: <Widget>[
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.only(top: 10.0),
-                          ),
-                          Text(
-                            widget.universityProject.projectName,
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-                          ),
-                          Padding(padding: EdgeInsets.only(top: 25.0)),
-                          Text(widget.universityProject.longDesc,),
-                          Padding(padding: EdgeInsets.only(top: 25.0)),
-                          RaisedButton(
-                            color: Colors.blue,
-                            splashColor: Colors.lightBlueAccent,
-                            elevation: 5.0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25.0)),
-                            onPressed: () {
-                              Map<String, String> data = <String, String>{
-                                "projectName" : widget.universityProject.projectName,
-                                "companyName" : widget.universityProject.companyName,
-                                "domainName" : widget.universityProject.domainName,
-                                "description" : widget.universityProject.description,
-                                "longDesc" : widget.universityProject.longDesc
-                              };
-                              _addOngoingProject(data);
-                            },
+          return Scaffold(
+            key: _scaffoldstate,
+            body: Column(
+              children: <Widget>[
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.all(20.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.0),
+                            ),
+                            Text(
+                              widget.universityProject.projectName,
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
+                            ),
+                            Padding(padding: EdgeInsets.only(top: 25.0)),
+                            Text(widget.universityProject.longDesc,),
+                            Padding(padding: EdgeInsets.only(top: 25.0)),
+                            RaisedButton(
+                              color: Colors.blue,
+                              splashColor: Colors.lightBlueAccent,
+                              elevation: 5.0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(25.0)),
+                              onPressed: () {
+                                Map<String, String> data = <String, String>{
+                                  "projectName" : widget.universityProject.projectName,
+                                  "companyName" : widget.universityProject.companyName,
+                                  "domainName" : widget.universityProject.domainName,
+                                  "description" : widget.universityProject.description,
+                                  "longDesc" : widget.universityProject.longDesc
+                                };
+                                _addOngoingProject(data);
+                                _showSnackBar('Project Joined Successfully');
+                              },
 
-                            child: Text('Join Project', style: TextStyle(color: Colors.white)),
-                          )
-                        ],
+                              child: Text('Join Project', style: TextStyle(color: Colors.white)),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         });
   }

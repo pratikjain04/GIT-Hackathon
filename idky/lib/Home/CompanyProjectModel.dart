@@ -70,150 +70,183 @@ class ProjectCardWidget extends StatefulWidget {
 }
 
 class _ProjectCardWidgetState extends State<ProjectCardWidget> {
+
+
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldstate = new GlobalKey<ScaffoldState>();
+
+
   DocumentReference documentReference;
 
   void _addOngoingProject(Map<String, String> data) async {
-    documentReference = Firestore.instance.document('projects/${data['projectName']}');
+    documentReference =
+        Firestore.instance.document('projects/${data['projectName']}');
     await documentReference.setData(data);
   }
 
-  void _showModalSheet() {
-    showModalBottomSheet(
-        context: context,
-        builder: (builder) {
-          return Column(
+  void _showSnackBar(String value) {
+    if (value.isEmpty)
+      return;
+    _scaffoldstate.currentState.showSnackBar(
+        new SnackBar(
+          content: Row(
             children: <Widget>[
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    color: Colors.white,
-                    child: Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.only(top: 10.0),
+              new Text(value, style: TextStyle(color: Colors.white),),
+              Padding(padding: EdgeInsets.only(left: 125.0),),
+              Icon(Icons.check, color: Colors.white,)
+            ],
+          ),
+          backgroundColor: Colors.green,)
+    );
+  }
+
+
+    void _showModalSheet() {
+      showModalBottomSheet(
+          context: context,
+          builder: (builder) {
+            return Scaffold(
+              key: _scaffoldstate,
+              body: Column(
+                children: <Widget>[
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        color: Colors.white,
+                        child: Padding(
+                          padding: EdgeInsets.all(20.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(top: 10.0),
+                              ),
+                              Text(
+                                widget.companyProject.projectName,
+                                style: TextStyle(fontWeight: FontWeight.bold,
+                                    fontSize: 13.0),
+                              ),
+                              Padding(padding: EdgeInsets.only(top: 25.0)),
+                              Text(widget.companyProject.longDesc,),
+                              Padding(padding: EdgeInsets.only(top: 25.0)),
+                              RaisedButton(
+                                elevation: 5.0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(25.0)),
+                                onPressed: () {
+                                  Map<String, String> data = <String, String>{
+                                    "projectName": widget.companyProject
+                                        .projectName,
+                                    "companyName": widget.companyProject
+                                        .companyName,
+                                    "domainName": widget.companyProject
+                                        .domainName,
+                                    "description": widget.companyProject
+                                        .description,
+                                    "longDesc": widget.companyProject.longDesc
+                                  };
+                                  _addOngoingProject(data);
+                                  _showSnackBar('Applied Successfully');
+                                },
+                                color: Colors.blue,
+                                splashColor: Colors.lightBlueAccent,
+                                child: Text('Apply',
+                                  style: TextStyle(color: Colors.white),),
+                              )
+                            ],
                           ),
-                          Text(
-                            widget.companyProject.projectName,
-                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.0),
-                          ),
-                          Padding(padding: EdgeInsets.only(top: 25.0)),
-                          Text(widget.companyProject.longDesc,),
-                          Padding(padding: EdgeInsets.only(top: 25.0)),
-                          RaisedButton(
-                            elevation: 5.0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(25.0)),
-                            onPressed: () {
-                              Map<String, String> data = <String, String>{
-                                "projectName" : widget.companyProject.projectName,
-                                "companyName" : widget.companyProject.companyName,
-                                "domainName" : widget.companyProject.domainName,
-                                "description" : widget.companyProject.description,
-                                "longDesc" : widget.companyProject.longDesc
-                              };
-                              _addOngoingProject(data);
-                            },
-                            color: Colors.blue,
-                            splashColor: Colors.lightBlueAccent,
-                            child: Text('Apply', style: TextStyle(color: Colors.white),),
-                          )
-                        ],
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
-          );
-        });
-  }
+            );
+          });
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 150.0,
-      width: 200.0,
-      child: Scaffold(
-        key: _scaffoldKey,
-        body: Padding(
-          padding: EdgeInsets.only(top: 3.0, left: 5.0, right: 5.0),
-          child: Container(
-            child: GestureDetector(
-              onTap: () {
-                _showModalSheet();
-              },
-              child: Card(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 5.0, top: 15.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        widget.companyProject.projectName,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20.0,
-                            fontStyle: FontStyle.italic),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 5.0),
-                        child: Text(
-                          'by ' + widget.companyProject.companyName,
+    @override
+    Widget build(BuildContext context) {
+      return Container(
+        height: 150.0,
+        width: 200.0,
+        child: Scaffold(
+          key: _scaffoldKey,
+          body: Padding(
+            padding: EdgeInsets.only(top: 3.0, left: 5.0, right: 5.0),
+            child: Container(
+              child: GestureDetector(
+                onTap: () {
+                  _showModalSheet();
+                },
+                child: Card(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 5.0, top: 15.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          widget.companyProject.projectName,
                           style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              fontWeight: FontWeight.w300,
-                              fontSize: 15.0),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              fontStyle: FontStyle.italic),
                         ),
-                      ),
-                      Padding(
+                        Padding(
                           padding: EdgeInsets.only(top: 5.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Column(
-                                children: <Widget>[
-                                  Text(
-                                    widget.companyProject.domainName,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 11.0,
+                          child: Text(
+                            'by ' + widget.companyProject.companyName,
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                fontWeight: FontWeight.w300,
+                                fontSize: 15.0),
+                          ),
+                        ),
+                        Padding(
+                            padding: EdgeInsets.only(top: 5.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Column(
+                                  children: <Widget>[
+                                    Text(
+                                      widget.companyProject.domainName,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 11.0,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )),
-                      Padding(
-                          padding: EdgeInsets.only(top: 5.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(left: 80.0),
-                                child: SingleChildScrollView(
-                                  child: Text(
-                                    widget.companyProject.description,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 11.0,
+                                  ],
+                                ),
+                              ],
+                            )),
+                        Padding(
+                            padding: EdgeInsets.only(top: 5.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(left: 80.0),
+                                  child: SingleChildScrollView(
+                                    child: Text(
+                                      widget.companyProject.description,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 11.0,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ))
-                    ],
+                              ],
+                            ))
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
-}
