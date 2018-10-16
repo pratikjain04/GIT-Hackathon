@@ -5,8 +5,9 @@ class UniversityProject{
   String mentorName;
   String domainName;
   String description;
+  String longdesc;
 
-  UniversityProject(this.projectName, this.mentorName, this.domainName, this.description);
+  UniversityProject(this.projectName, this.mentorName, this.domainName, this.description, this.longdesc);
 
 }
 
@@ -17,35 +18,40 @@ List<UniversityProject> universityProjects = [
       'Smart Energy Rooms',
       'Pratik Jain',
       'Internet of Things',
-      'Research Project for Energy Reduction'
+      'Research Project for Energy Reduction',
+      ''
   ),
 
   UniversityProject(
       'TechiDeate',
       'Anshuman Kalla',
       'Web Development',
-      'Website on PHP for Tech Fest'
+      'Website on PHP for Tech Fest',
+      ''
   ),
 
   UniversityProject(
       'Marksheet Scanner',
       'Ankit Sharma',
       'Machine Learning',
-      'Uploads the marks of exams \ndirectly in one image'
+      'Uploads the marks of exams \ndirectly in one image',
+      ''
   ),
 
   UniversityProject(
       'infoGIT',
       'Aashis Kumar',
       'App Development',
-      'App which gives all the information on GIT'
+      'App which gives all the information on GIT',
+      ''
   ),
 
   UniversityProject(
       'DroneAid',
       'Pratik Jain',
       'Internet of Things',
-      'Research Project for Disaster Management'
+      'Research Project for Disaster Management',
+      ''
   ),
 
 

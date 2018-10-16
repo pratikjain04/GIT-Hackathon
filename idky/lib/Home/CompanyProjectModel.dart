@@ -177,7 +177,7 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                                   Text(
                                     widget.companyProject.domainName,
                                     style: TextStyle(
-                                      fontWeight: FontWeight.w400,
+                                      fontWeight: FontWeight.bold,
                                       fontSize: 11.0,
                                     ),
                                   ),
