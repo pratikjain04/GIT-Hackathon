@@ -9,25 +9,22 @@ class ProjectAppliedFor extends StatefulWidget {
 }
 
 class _ProjectAppliedForState extends State<ProjectAppliedFor> {
-  List<CompanyProject> filteredCompanyProjectList = List();
-  DocumentReference documentReference;
+  List<Map<String, dynamic>> ongoingProjectList = List();
+  CollectionReference collectionReference;
 
-  Future<DocumentSnapshot> _getProjectList() async {
-    documentReference = Firestore.instance.document('user/skills');
-    DocumentSnapshot snapshot = await documentReference.get();
+  Future<QuerySnapshot> _getProjectList() async {
+    collectionReference = Firestore.instance.collection('projects');
+    QuerySnapshot snapshot = await collectionReference.getDocuments();
     return snapshot;
   }
 
   @override
   void initState() {
     super.initState();
-    _getProjectList().then((docsnapshot) {
-      docsnapshot.data['domains'].forEach((domain) {
-        companyProjects.forEach((project) {
-          if (domain == project.domainName)
-            setState(() {
-              filteredCompanyProjectList.add(project);
-            });
+    _getProjectList().then((querysnapshot){
+      querysnapshot.documents.forEach((docsnapshot){
+        setState(() {
+          ongoingProjectList.add(docsnapshot.data);
         });
       });
     });
@@ -35,25 +32,30 @@ class _ProjectAppliedForState extends State<ProjectAppliedFor> {
 
   @override
   Widget build(BuildContext context) {
-    return (filteredCompanyProjectList.isNotEmpty)
-        ? Scaffold(
-      body: Scrollbar(
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: filteredCompanyProjectList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ProjectCardWidget(
-                companyProject: filteredCompanyProjectList[index]);
-          },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Ongoing Projects',
         ),
+        centerTitle: true,
       ),
-    )
-        : Padding(
-      padding: EdgeInsets.only(top: 10.0),
-      child: Center(
-        child: Text(
-          'No Projects matcing your skillset / Skills not updated',
-          style: TextStyle(fontWeight: FontWeight.w400),
+      body: (ongoingProjectList.isNotEmpty)
+          ? Scrollbar(
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: ongoingProjectList.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ProjectCardWidget(
+                  ongoingProject: ongoingProjectList[index]);
+            },
+          ),
+        ) : Padding(
+        padding: EdgeInsets.only(top: 10.0),
+        child: Center(
+            child: Text(
+              'Not Applied to any project / Still Loading',
+              style: TextStyle(fontWeight: FontWeight.w400),
+            ),
         ),
       ),
     );
@@ -61,12 +63,12 @@ class _ProjectAppliedForState extends State<ProjectAppliedFor> {
 }
 
 class ProjectCardWidget extends StatefulWidget {
-  final CompanyProject companyProject;
+  final Map<String, dynamic> ongoingProject;
 
   @override
   _ProjectCardWidgetState createState() => _ProjectCardWidgetState();
 
-  ProjectCardWidget({Key key, this.companyProject}) : super(key: key);
+  ProjectCardWidget({Key key, this.ongoingProject}) : super(key: key);
 }
 
 class _ProjectCardWidgetState extends State<ProjectCardWidget> {
@@ -97,11 +99,11 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                             padding: EdgeInsets.only(top: 10.0),
                           ),
                           Text(
-                            widget.companyProject.projectName,
+                            widget.ongoingProject['projectName'],
                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13.0),
                           ),
                           Padding(padding: EdgeInsets.only(top: 25.0)),
-                          Text(widget.companyProject.longDesc,),
+                          Text(widget.ongoingProject['longDesc']),
                           Padding(padding: EdgeInsets.only(top: 25.0)),
                           RaisedButton(
                             elevation: 5.0,
@@ -109,11 +111,11 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                                 borderRadius: BorderRadius.circular(25.0)),
                             onPressed: () {
                               Map<String, String> data = <String, String>{
-                                "projectName" : widget.companyProject.projectName,
-                                "companyName" : widget.companyProject.companyName,
-                                "domainName" : widget.companyProject.domainName,
-                                "description" : widget.companyProject.description,
-                                "longDesc" : widget.companyProject.longDesc
+                                "projectName" : widget.ongoingProject['projectName'],
+                                "companyName" : widget.ongoingProject['companyName'],
+                                "domainName" : widget.ongoingProject['domainName'],
+                                "description" : widget.ongoingProject['description'],
+                                "longDesc" : widget.ongoingProject['longDesc']
                               };
                               _addOngoingProject(data);
                             },
@@ -153,7 +155,7 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        widget.companyProject.projectName,
+                        widget.ongoingProject['projectName'],
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20.0,
@@ -162,7 +164,7 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                       Padding(
                         padding: EdgeInsets.only(top: 5.0),
                         child: Text(
-                          'by ' + widget.companyProject.companyName,
+                          'by ' + widget.ongoingProject['companyName'],
                           style: TextStyle(
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.w300,
@@ -177,7 +179,7 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                               Column(
                                 children: <Widget>[
                                   Text(
-                                    widget.companyProject.domainName,
+                                    widget.ongoingProject['domainName'],
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 11.0,
@@ -196,7 +198,7 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                                 padding: EdgeInsets.only(left: 80.0),
                                 child: SingleChildScrollView(
                                   child: Text(
-                                    widget.companyProject.description,
+                                    widget.ongoingProject['description'],
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 11.0,

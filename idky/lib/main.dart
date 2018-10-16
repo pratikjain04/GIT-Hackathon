@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:idky/Home/ProjectAppliedFor.dart';
 import 'SplashScreen/splash_screen.dart';
 import 'Home/HomePage.dart';
 import 'SignIn/signin.dart';
@@ -11,7 +12,8 @@ void main() => runApp(MaterialApp(
       '/HomePage': (BuildContext context) => new HomePage(),
       '/SignIn': (BuildContext context) => new SignIn(),
       '/Skills': (BuildContext context) => new Skills(),
-      '/CollegeSelection': (BuildContext context) => new CollegeSelection()
+      '/CollegeSelection': (BuildContext context) => new CollegeSelection(),
+      '/ProjectsApplied': (BuildContext context) => new ProjectAppliedFor()
     },
 ));
 
