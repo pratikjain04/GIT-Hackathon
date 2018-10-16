@@ -44,7 +44,7 @@ flutter:
   - assets/Tech.png
   - assets/whitegooglelogo.png
   - assets/projects.png
-  - assets/prepare.png
+  - assets/prepare1.png
   - assets/internship.png
   - assets/person.png
   - assets/logo.png
@@ -73,6 +73,7 @@ flutter:
       fonts:
         - asset: assets/fonts/Optimus.otf
         - asset: assets/fonts/Optimus-Bold.otf
+        - asset: assets/fonts/Optimus-Italic.otf
   #         weight: 700
   #
   # For details regarding fonts from package dependencies,
