@@ -9,12 +9,6 @@ class UniversityProjectModel extends StatefulWidget {
 }
 
 class _UniversityProjectModelState extends State<UniversityProjectModel> {
-  DocumentReference documentReference;
-
-  void _addOngoingProject(Map<String, dynamic> data) async {
-    documentReference = Firestore.instance.document('projects/${data['name']}');
-    await documentReference.setData(data);
-  }
 
   @override
   Widget build(BuildContext context) {
