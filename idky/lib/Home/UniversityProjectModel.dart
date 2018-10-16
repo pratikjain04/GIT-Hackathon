@@ -40,6 +40,12 @@ class ProjectCardWidget extends StatefulWidget {
 class _ProjectCardWidgetState extends State<ProjectCardWidget> {
 
   final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  DocumentReference documentReference;
+
+  void _addOngoingProject(Map<String, String> data) async {
+    documentReference = Firestore.instance.document('projects/${data['projectName']}');
+    await documentReference.setData(data);
+  }
 
   void _showModalSheet() {
     showModalBottomSheet(
@@ -64,7 +70,7 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
                           ),
                           Padding(padding: EdgeInsets.only(top: 25.0)),
-                          Text(widget.universityProject.longdesc,),
+                          Text(widget.universityProject.longDesc,),
                           Padding(padding: EdgeInsets.only(top: 25.0)),
                           RaisedButton(
                             color: Colors.blue,
@@ -73,7 +79,14 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(25.0)),
                             onPressed: () {
-                              //todo: ATEEK
+                              Map<String, String> data = <String, String>{
+                                "projectName" : widget.universityProject.projectName,
+                                "companyName" : widget.universityProject.companyName,
+                                "domainName" : widget.universityProject.domainName,
+                                "description" : widget.universityProject.description,
+                                "longDesc" : widget.universityProject.longDesc
+                              };
+                              _addOngoingProject(data);
                             },
 
                             child: Text('Join Project', style: TextStyle(color: Colors.white)),
@@ -120,7 +133,7 @@ class _ProjectCardWidgetState extends State<ProjectCardWidget> {
                       Padding(
                         padding: EdgeInsets.only(top: 5.0),
                         child: Text(
-                          'by ' + widget.universityProject.mentorName,
+                          'by ' + widget.universityProject.companyName,
                           style: TextStyle(
                               fontStyle: FontStyle.italic,
                               fontWeight: FontWeight.w300,

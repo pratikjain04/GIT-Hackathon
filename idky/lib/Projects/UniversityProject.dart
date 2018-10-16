@@ -2,12 +2,12 @@ class UniversityProject{
 
 
   String projectName;
-  String mentorName;
+  String companyName;
   String domainName;
   String description;
-  String longdesc;
+  String longDesc;
 
-  UniversityProject(this.projectName, this.mentorName, this.domainName, this.description, this.longdesc);
+  UniversityProject(this.projectName, this.companyName, this.domainName, this.description, this.longDesc);
 
 }
 
