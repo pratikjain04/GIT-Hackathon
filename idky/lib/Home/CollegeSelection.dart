@@ -87,8 +87,10 @@ class _CollegeSelectionState extends State<CollegeSelection> {
             padding: EdgeInsets.only(top: uni_height / 15, left: uni_width / 20),
             child: Container(
               height: uni_height / 12.183,
-              width: uni_width / 2.93,
+              width: uni_width / 2,
               child: RaisedButton(
+                elevation: 7.0,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                 onPressed: (){
                   Navigator.of(context).pushNamedAndRemoveUntil('/HomePage', (Route<dynamic> route) => false);
                 },
@@ -96,6 +98,7 @@ class _CollegeSelectionState extends State<CollegeSelection> {
                 child: Text(
                   'Next',
                   style: TextStyle(
+                    fontFamily: 'ArimaMadurai',
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 30.0

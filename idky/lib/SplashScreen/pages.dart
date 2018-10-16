@@ -19,7 +19,7 @@ final pages = [
       ),
   new PageViewModel(
       const Color(0xFF8BC34A),
-      'assets/prepare.png',
+      'assets/prepare1.png',
       'Prepare',
       'Prepare for interviews and placement\n rounds with our well \nsorted prepration model.',
       'assets/person.png',
