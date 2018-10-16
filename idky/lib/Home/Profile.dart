@@ -123,7 +123,7 @@ class _ProfileState extends State<Profile> {
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider();
                   },
-                  itemCount: 3,
+                  itemCount: 2,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       trailing: Icon(Icons.arrow_forward),
@@ -132,7 +132,9 @@ class _ProfileState extends State<Profile> {
                         style: TextStyle(
                         ),
                       ),
-                      onTap: profile[index].action(context),
+                      onTap: (){
+                        profile[index].action(context);
+                      }
                     );
                   }
               )
